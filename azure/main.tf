@@ -6,6 +6,14 @@ terraform {
       version = "=3.0.0"
     }
   }
+  backend "remote" {
+    hostname = "app.terraform.io"
+    organization = "gdykeman"
+
+    workspaces {
+      name = "Azure"
+    }
+  }
 }
 
 # Configure the Microsoft Azure Provider
