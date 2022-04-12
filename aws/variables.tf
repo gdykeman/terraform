@@ -40,3 +40,8 @@ variable "rules" {
 
 
 }
+
+variable "ec2_type" {
+  type = string
+  default = "t3.micro"
+}

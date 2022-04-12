@@ -55,7 +55,7 @@ resource "aws_security_group" "sg" {
 resource "aws_instance" "instance" {
   ami             = data.aws_ami.rhel.id
   subnet_id       = module.vpc.public_subnets[0]
-  instance_type   = "t2.micro"
+  instance_type   = var.ec2_type
   security_groups = [aws_security_group.sg.id]
   user_data       = fileexists("script.sh") ? file("script.sh") : null
   key_name        = "gdykeman"
