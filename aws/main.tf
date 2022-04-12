@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "aws" {
-  region = terraform.workspace == "AWS" ? var.aws_info.vpc_prod_az[0] : var.aws_info.vpc_dev_az[0]
+  region = terraform.workspace == "AWS" ? var.aws_info.vpc_prod_az : var.aws_info.vpc_dev_az
 }
 
 data "aws_ami" "rhel" {
@@ -35,8 +35,8 @@ module "vpc" {
   name = "${terraform.workspace}-vpc"
   cidr = var.aws_info.vpc_cidr
 
-  azs            = terraform.workspace == "AWS" ? vpc_prod_az : vpc_dev_az
-  public_subnets = var.aws_info.vpc_public_subnets
+  azs            = terraform.workspace == "AWS" ? var.aws_info.vpc_prod_az : vpc_dev_az
+  public_subnets = var.aws_info.vpc_public_subnets[0]
 }
 
 resource "aws_security_group" "sg" {

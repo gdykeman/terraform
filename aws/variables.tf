@@ -1,5 +1,5 @@
 variable "aws_info" {
-  type = list(object({
+  type = object({
     ec2_type = string
     ec2_ami_name = string
     ec2_ami_arch = string
@@ -8,7 +8,7 @@ variable "aws_info" {
     vpc_prod_az = list(string)
     vpc_dev_az = list(string)
     vpc_public_subnets = list(string)
-  }))
+  })
   default = [
     {
     ec2_type = "t2.micro"
