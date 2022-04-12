@@ -1,3 +1,14 @@
+terraform {
+  backend "remote" {
+    hostname = "app.terraform.io"
+    organization = "gdykeman"
+
+    workspaces {
+      name = "AWS"
+    }
+  }
+}
+
 provider "aws" {
   region = terraform.workspace == "AWS" ? "us-east-1" : "us-east-2"
 }
