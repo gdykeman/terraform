@@ -35,7 +35,7 @@ module "vpc" {
   name = "${terraform.workspace}-vpc"
   cidr = var.aws_info.vpc_cidr
 
-  azs            = terraform.workspace == "AWS" ? var.aws_info.vpc_prod_az[0] : vpc_dev_az[0]
+  azs            = terraform.workspace == "AWS" ? var.aws_info.vpc_prod_az : var.aws_info.vpc_dev_az
   public_subnets = var.aws_info.vpc_public_subnets
 }
 
