@@ -1,5 +1,5 @@
 provider "aws" {
-  region = terraform.workspace == "default" ? "us-east-1" : "us-east-2"
+  region = terraform.workspace == "AWS" ? "us-east-1" : "us-east-2"
 }
 
 data "aws_ami" "rhel" {
@@ -24,7 +24,7 @@ module "vpc" {
   name = "${terraform.workspace}-vpc"
   cidr = "10.0.0.0/16"
 
-  azs            = terraform.workspace == "default" ? ["us-east-1a"] : ["us-east-2a"]
+  azs            = terraform.workspace == "AWS" ? ["us-east-1a"] : ["us-east-2a"]
   public_subnets = ["10.0.1.0/24"]
 }
 
