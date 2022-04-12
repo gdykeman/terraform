@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "aws" {
-  region = terraform.workspace == "AWS" ? "us-east-1" : "us-east-2"
+  region = terraform.workspace == "AWS" ? var.aws_info.vpc_prod_az[0] : var.aws_info.vpc_dev_az[0]
 }
 
 data "aws_ami" "rhel" {
@@ -19,12 +19,12 @@ data "aws_ami" "rhel" {
 
   filter {
     name   = "name"
-    values = ["RHEL-8*"]
+    values = [var.aws_info.ec2_ami_name]
   }
 
   filter {
     name   = "architecture"
-    values = ["x86_64"]
+    values = [var.aws_info.ec2_ami_arch]
   }
 }
 
@@ -33,10 +33,10 @@ module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
   name = "${terraform.workspace}-vpc"
-  cidr = "10.0.0.0/16"
+  cidr = var.aws_info.vpc_cidr
 
-  azs            = terraform.workspace == "AWS" ? ["us-east-1a"] : ["us-east-2a"]
-  public_subnets = ["10.0.1.0/24"]
+  azs            = terraform.workspace == "AWS" ? vpc_prod_az : vpc_dev_az
+  public_subnets = var.aws_info.vpc_public_subnets
 }
 
 resource "aws_security_group" "sg" {
@@ -66,10 +66,10 @@ resource "aws_security_group" "sg" {
 resource "aws_instance" "instance" {
   ami             = data.aws_ami.rhel.id
   subnet_id       = module.vpc.public_subnets[0]
-  instance_type   = var.ec2_type
+  instance_type   = var.aws_info.ec2_type
   security_groups = [aws_security_group.sg.id]
   user_data       = fileexists("script.sh") ? file("script.sh") : null
-  key_name        = "gdykeman"
+  key_name        = var.aws_info.ec2_key_name
 
   tags = {
     Name = "${terraform.workspace}-ec2"

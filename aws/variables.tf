@@ -1,3 +1,28 @@
+variable "aws_info" {
+  type = list(object({
+    ec2_type = string
+    ec2_ami_name = string
+    ec2_ami_arch = string
+    ec2_key_name = string
+    vpc_cidr = string
+    vpc_prod_az = list(string)
+    vpc_dev_az = list(string)
+    vpc_public_subnets = list(string)
+  }))
+  default = [
+    {
+    ec2_type = "t2.micro"
+    ec2_ami_name = "RHEL-8*"
+    ec2_ami_arch = "x86_64"
+    ec2_key_name = "gdykeman"
+    vpc_cidr = "10.0.0.0/16"
+    vpc_prod_az = ["us-east-1a"]
+    vpc_dev_az = ["us-east-2a"]
+    vpc_public_subnets = ["10.0.1.0/24"]
+    }
+  ]
+}
+
 variable "rules" {
   type = list(object({
     from_port   = number
@@ -37,11 +62,4 @@ variable "rules" {
       cidr_blocks = ["10.10.10.10/32"]
     }
   ]
-
-
-}
-
-variable "ec2_type" {
-  type = string
-  default = "t2.micro"
 }
