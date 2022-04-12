@@ -17,9 +17,9 @@ terraform {
 }
 
 # Configure the Microsoft Azure Provider
-# provider "azurerm" {
-#   features {}
-# }
+provider "azurerm" {
+  features {}
+}
 
 # Create a resource group
 resource "azurerm_resource_group" "gdykeman-rg" {
