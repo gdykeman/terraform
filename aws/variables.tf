@@ -9,8 +9,7 @@ variable "aws_info" {
     vpc_dev_az = list(string)
     vpc_public_subnets = list(string)
   })
-  default = [
-    {
+  default = {
     ec2_type = "t2.micro"
     ec2_ami_name = "RHEL-8*"
     ec2_ami_arch = "x86_64"
@@ -20,7 +19,6 @@ variable "aws_info" {
     vpc_dev_az = ["us-east-2a"]
     vpc_public_subnets = ["10.0.1.0/24"]
     }
-  ]
 }
 
 variable "rules" {
