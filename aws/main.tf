@@ -1,6 +1,6 @@
 terraform {
   backend "remote" {
-    hostname = "app.terraform.io"
+    hostname     = "app.terraform.io"
     organization = "gdykeman"
 
     workspaces {
@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "aws" {
-  region = terraform.workspace == "AWS" ? var.aws_info.vpc_prod_az[0] : var.aws_info.vpc_dev_az[0]
+  region = terraform.workspace == "AWS" ? "us-east-1" : "us-east-2"
 }
 
 data "aws_ami" "rhel" {
@@ -35,7 +35,7 @@ module "vpc" {
   name = "${terraform.workspace}-vpc"
   cidr = var.aws_info.vpc_cidr
 
-  azs            = terraform.workspace == "AWS" ? var.aws_info.vpc_prod_az : var.aws_info.vpc_dev_az
+  azs            = terraform.workspace == "AWS" ? ["us-east-1a"] : ["us-east-2a"]
   public_subnets = var.aws_info.vpc_public_subnets
 }
 
