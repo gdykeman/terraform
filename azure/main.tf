@@ -22,14 +22,14 @@ provider "azurerm" {
 }
 
 # Create a resource group
-resource "azurerm_resource_group" "gdykeman-rg" {
-  name     = "gdykeman-rg"
+resource "azurerm_resource_group" "rg" {
+  name     = var.rg
   location = "East US"
 }
 
 # Create a virtual network within the resource group
-resource "azurerm_virtual_network" "gdykeman-network" {
-  name                = "gdykeman-network"
+resource "azurerm_virtual_network" "network" {
+  name                = var.network
   resource_group_name = azurerm_resource_group.gdykeman-rg.name
   location            = azurerm_resource_group.gdykeman-rg.location
   address_space       = ["10.0.0.0/16"]
