@@ -12,7 +12,7 @@ variable "network" {
         cidr = list(string)
     })
     default = {
-        name = "dev-rg"
+        name = "dev-network"
         cidr = ["10.0.0.0/16"]
     }
 }
