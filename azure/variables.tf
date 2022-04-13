@@ -16,7 +16,3 @@ variable "network" {
         cidr = ["10.0.0.0/16"]
     }
 }
-variable "network" {
-    type = string
-    default = "dev-network"
-}
