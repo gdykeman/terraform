@@ -10,7 +10,7 @@ variable "aws_info" {
     vpc_public_subnets = list(string)
   })
   default = {
-    ec2_type           = "t3.micro"
+    ec2_type           = "t2.micro"
     ec2_ami_name       = "RHEL-8*"
     ec2_ami_arch       = "x86_64"
     ec2_key_name       = "gdykeman"
