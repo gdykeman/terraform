@@ -1,4 +1,4 @@
-# Ansible Collection - redhatautomation.terraform_demo
+# Terraform for AWS and Azure
 
 ## Installation and Usage
 
