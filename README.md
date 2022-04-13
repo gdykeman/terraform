@@ -1,4 +1,4 @@
-# Ansible Collection - redhatautomation.terraform_demo
+# Terraform
 
 ## Installation and Usage
 
