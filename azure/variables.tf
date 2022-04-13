@@ -1,6 +1,6 @@
 variable "rg_name" {
     type = string
-    default = "dev-rg"
+    default = "prod-rg"
 }
 variable "rg_loc" {
     type = string
@@ -12,7 +12,7 @@ variable "network" {
         cidr = list(string)
     })
     default = {
-        name = "dev-network"
+        name = "prod-network"
         cidr = ["10.0.0.0/16"]
     }
 }
