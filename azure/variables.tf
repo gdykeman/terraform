@@ -1,8 +1,8 @@
 variable "rg" {
     type = string
-    default = dev-rg
+    default = "dev-rg"
 }
 variable "network" {
     type = string
-    default = dev-network
+    default = "dev-network"
 }
