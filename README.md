@@ -1,4 +1,4 @@
-# Terraform and Ansible
+# Terraform for AWS and Azure
 
 ## Installation and Usage
 
